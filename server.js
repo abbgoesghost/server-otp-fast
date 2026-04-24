@@ -7,12 +7,13 @@ const CustomerLocationManager = require("./customers/customer-location-manager")
 const DriverLocationManager = require("./drivers/driver-location-manager");
 const WalletManager = require("./wallet/wallet-manager");
 const PayTechManager = require("./payment/paytech-manager");
-const PriceCalculator = require("./ride/price-calculator");
+const { priceCalculator } = require("./shared-instances");
 const rideRoutes = require("./routes/ride-routes");
 const notificationRoutes = require("./routes/notification-routes");
 const analyticsRoutes = require("./routes/analytics-routes");
 const ecommerceRoutes = require("./routes/ecommerce-routes");
 const promoRoutes = require("./routes/promo-routes");
+const pricingRoutes = require("./routes/pricing-routes");
 const admin = require("./config/firebase-admin");
 require("dotenv").config();
 
@@ -37,6 +38,9 @@ app.use("/api/ecommerce", ecommerceRoutes);
 // Routes pour les promotions
 app.use("/api/promo", promoRoutes);
 
+// Routes pour la politique de prix
+app.use("/api/pricing", pricingRoutes);
+
 const whatsappClient = new WhatsAppClient();
 const otpManager = new OTPManager();
 const presenceManager = new PresenceManager();
@@ -44,7 +48,7 @@ const customerLocationManager = new CustomerLocationManager();
 const driverLocationManager = DriverLocationManager; // Déjà une instance
 const walletManager = new WalletManager();
 const payTechManager = new PayTechManager();
-const priceCalculator = new PriceCalculator();
+// priceCalculator est importé depuis shared-instances.js
 
 // ⚠️ WhatsApp désactivé temporairement pour éviter les crashes
 console.log("⚠️ WhatsApp désactivé - Mode développement");

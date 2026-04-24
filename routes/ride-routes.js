@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const RealtimeRideManager = require("../ride/realtime-ride-manager");
-const PriceCalculator = require("../ride/price-calculator");
 const DriverLocationManager = require("../drivers/driver-location-manager");
-const priceCalculator = new PriceCalculator();
+const { priceCalculator } = require("../shared-instances");
 const admin = require("../config/firebase-admin");
 
 // Calculer le prix pour tous les types de véhicules
