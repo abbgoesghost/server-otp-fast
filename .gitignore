@@ -7,7 +7,7 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
-
+config/serviceAccountKey.json
 # Native
 .kotlin/
 *.orig.*
