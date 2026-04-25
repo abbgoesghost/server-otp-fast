@@ -167,6 +167,20 @@ app.post("/api/verify-otp", (req, res) => {
       });
     }
 
+    // COMPTE DE TEST POUR GOOGLE PLAY REVIEW
+    // Accepte toujours le code 123456 pour le numéro de test
+    const TEST_PHONE = "+22370000000";
+    const TEST_OTP = "123456";
+
+    if (phoneNumber === TEST_PHONE && otp === TEST_OTP) {
+      console.log("✅ [TEST ACCOUNT] Google Play reviewer logged in");
+      return res.json({
+        success: true,
+        message: "Connexion réussie (compte de test)",
+        isTestAccount: true,
+      });
+    }
+
     const result = otpManager.verifyOTP(phoneNumber, otp);
     res.json(result);
   } catch (error) {
